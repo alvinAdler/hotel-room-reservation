@@ -1,13 +1,11 @@
 import React from 'react'
+import ReservationCard from './ReservationCard'
 
 const RoomReservations = ({room_reservations}) => {
     return (
-        <div className="reservation-cards">
+        <div className="reservation-cards row justify-content-center">
             {room_reservations.map((room) => (
-                <div>
-                    <h2>{room.customer_name}</h2>
-                    <h3>{room.room_number}</h3>
-                </div>
+                <ReservationCard reservation_data={room} />
             ))}
         </div>
     )

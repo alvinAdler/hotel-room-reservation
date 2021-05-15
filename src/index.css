@@ -35,6 +35,23 @@ hr{
 }
 
 .reservation-cards{
-  border: 3px solid red;
+  /* border: 3px solid red; */
   color: #f2f2f2;
+}
+
+.room-card{
+  background: none;
+  border: 3px solid #f2f2f2;
+  margin: 10px 10px;
+  transition: 0.2s;
+}
+
+.room-card:hover{
+  transition: 0.2s;
+  background-color: #f2f2f2;
+  color: #2b2b2b;
+}
+
+.room-card hr{
+  width: 100%;
 }
