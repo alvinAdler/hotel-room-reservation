@@ -47,11 +47,18 @@ function App() {
     }
   ])
 
+  //Delete Reservation
+  const delete_reserv = (id) => {
+    setReservations(reservations.filter((reservation) => (
+      reservation.id !== id
+    )))
+  }
+
 
   return (
     <div className="App container">
       <Header/>
-      <RoomReservations room_reservations = {reservations}/>
+      <RoomReservations room_reservations = {reservations} onDelete = {delete_reserv}/>
     </div>
   );
 }

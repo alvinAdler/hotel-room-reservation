@@ -1,10 +1,12 @@
 import React from 'react'
+import {FaTimes} from 'react-icons/fa'
 
-const ReservationCard = ({reservation_data}) => {
+const ReservationCard = ({reservation_data, onDelete}) => {
     return (
         <div className="room-card card col-md-5">
             <div className="card-body">
                 <h5 className="card-title">{reservation_data.customer_name}</h5>
+                <FaTimes style={FaTimesStyle} onClick = {() => onDelete(reservation_data.id)}/>
                 <h6 className="card-subtitle mb-2 text-muted">{reservation_data.room_number}</h6>
                 <div>
                     <hr />
@@ -14,6 +16,14 @@ const ReservationCard = ({reservation_data}) => {
             </div>
         </div>
     )
+}
+
+const FaTimesStyle = {
+    position: "absolute",
+    cursor: "pointer",
+    color: "#eb4034",
+    top: "15px",
+    right: "15px"
 }
 
 export default ReservationCard
