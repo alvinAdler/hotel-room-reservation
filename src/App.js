@@ -54,10 +54,15 @@ function App() {
     )))
   }
 
+  //Submit Reservation
+  const submit_reserv = (reservation) => {
+    console.log(reservation)
+  }
+
 
   return (
     <div className="App container">
-      <Header/>
+      <Header />
       <RoomReservations room_reservations = {reservations} onDelete = {delete_reserv}/>
     </div>
   );

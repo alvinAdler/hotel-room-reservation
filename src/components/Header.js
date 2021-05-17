@@ -1,5 +1,7 @@
 import React from 'react'
 
+import AddReservation from './AddReservation'
+
 const Header = () => {
     return (
         <header className="main-header jumbotron">
@@ -8,6 +10,8 @@ const Header = () => {
             <hr className="my-4"/>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem earum sint a reiciendis sapiente? Omnis iste tenetur, debitis, unde ea labore corporis velit vitae repellat itaque pariatur vero tempore reprehenderit!</p>
             <button className="add-button btn btn-primary">Add</button>
+
+            <AddReservation/>
         </header>
     )
 }
