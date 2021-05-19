@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import AddReservation from './components/AddReservation'
 
 import Header from './components/Header'
 import RoomReservations from './components/RoomReservations'
@@ -11,7 +12,7 @@ function App() {
       checkin_date: "April 15, 2021 - 09:00:00",
       checkout_date: "April 20, 2021 - 13:00:00",
       room_number: 201,
-      open_desc: true
+      open_desc: false
     },
     {
       id: 2,
@@ -19,7 +20,7 @@ function App() {
       checkin_date: "May 08, 2021 - 10:00:00",
       checkout_date: "May 14, 2021 - 15:00:00",
       room_number: 309,
-      open_desc: true
+      open_desc: false
     },
     {
       id: 3,
@@ -27,7 +28,7 @@ function App() {
       checkin_date: "June 02, 2021 - 18:00:00",
       checkout_date: "April 20, 2021 - 08:00:00",
       room_number: 409,
-      open_desc: true
+      open_desc: false
     },
     {
       id: 4,
@@ -35,7 +36,7 @@ function App() {
       checkin_date: "December 13, 2021 - 05:00:00",
       checkout_date: "December 23, 2021 - 20:00:00",
       room_number: 807,
-      open_desc: true
+      open_desc: false
     },
     {
       id: 5,
@@ -43,7 +44,7 @@ function App() {
       checkin_date: "September 29, 2021 - 15:00:00",
       checkout_date: "October 5, 2021 - 08:00:00",
       room_number: 203,
-      open_desc: true
+      open_desc: false
     }
   ])
 
@@ -56,14 +57,26 @@ function App() {
 
   //Submit Reservation
   const submit_reserv = (reservation) => {
-    console.log(reservation)
+    setReservations([...reservations, reservation])
+  }
+
+  //Toggle reservation card
+  const toggle_reserv_card = (id) => {
+    console.log(id)
+
+    setReservations(reservations.map((reservation) => (reservation.id === id ? 
+      {...reservation, open_desc:!reservation.open_desc} : 
+      reservation
+    )
+    ))
   }
 
 
   return (
     <div className="App container">
       <Header />
-      <RoomReservations room_reservations = {reservations} onDelete = {delete_reserv}/>
+      <AddReservation onSubmit = {submit_reserv}/>
+      <RoomReservations room_reservations = {reservations} onDelete = {delete_reserv} onToggle = {toggle_reserv_card}/>
     </div>
   );
 }
