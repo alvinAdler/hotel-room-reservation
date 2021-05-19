@@ -31,6 +31,14 @@
       "checkout_date": "December 23, 2021 - 20:00:00",
       "room_number": 807,
       "open_desc": false
+    },
+    {
+      "id": 294,
+      "customer_name": "Aru",
+      "checkin_date": "May 18, 2020 - 13:00:00",
+      "checkout_date": "May 20, 2020 - 15:00:00",
+      "room_number": "801",
+      "open_desc": false
     }
   ]
 }

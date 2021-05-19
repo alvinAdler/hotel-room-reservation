@@ -6,7 +6,7 @@ const AddReservation = ({onSubmit}) => {
     const [checkInDate, setCheckInDate] = useState('')
     const [checkOutDate, setCheckOutDate] = useState('')
     const [roomNumber, setRoomNumber] = useState(0)
-    const [openDesc, setOpenDesc] = useState(true)
+    const [openDesc, setOpenDesc] = useState(false)
 
     const submitReservation = (e) => {
         e.preventDefault()

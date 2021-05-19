@@ -43,12 +43,35 @@ function App() {
   }
 
   //Submit Reservation
-  const submit_reserv = (reservation) => {
-    setReservations([...reservations, reservation])
+  const submit_reserv = async (reservation) => {
+    const res = await fetch(`http://localhost:5000/reservations`, {
+      method: "POST", 
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(reservation)
+    })
+
+    const data = await res.json()
+
+    setReservations([...reservations, data])
   }
 
   //Toggle reservation card
-  const toggle_reserv_card = (id) => {
+  const toggle_reserv_card = async (id) => {
+    const res = await fetch(`http://localhost:5000/reservations/${id}`)
+    const data = await res.json()
+
+    const updated_data = {...data, open_desc: !data.open_desc}
+
+    const send_data = await fetch(`http://localhost:5000/reservations/${id}`, {
+      method: "PUT", 
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(updated_data)
+    })
+
     setReservations(reservations.map((reservation) => (reservation.id === id ? 
       {...reservation, open_desc:!reservation.open_desc} : 
       reservation
