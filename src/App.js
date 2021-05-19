@@ -32,7 +32,11 @@ function App() {
   }
 
   //Delete Reservation
-  const delete_reserv = (id) => {
+  const delete_reserv = async (id) => {
+    await fetch(`http://localhost:5000/reservations/${id}`, {
+      method: "DELETE"
+    })
+
     setReservations(reservations.filter((reservation) => (
       reservation.id !== id
     )))

@@ -31,14 +31,6 @@
       "checkout_date": "December 23, 2021 - 20:00:00",
       "room_number": 807,
       "open_desc": false
-    },
-    {
-      "id": 5,
-      "customer_name": "Ayu",
-      "checkin_date": "September 29, 2021 - 15:00:00",
-      "checkout_date": "October 5, 2021 - 08:00:00",
-      "room_number": 203,
-      "open_desc": false
     }
   ]
 }
