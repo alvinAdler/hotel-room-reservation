@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import AddReservation from './components/AddReservation'
 
 import Header from './components/Header'
@@ -6,50 +6,30 @@ import RoomReservations from './components/RoomReservations'
 import EmptyBanner from './components/EmptyBanner'
 
 function App() {
+  //States
   const [reservations, setReservations] = useState([
-    {
-      id: 1,
-      customer_name: "Alvin",
-      checkin_date: "April 15, 2021 - 09:00:00",
-      checkout_date: "April 20, 2021 - 13:00:00",
-      room_number: 201,
-      open_desc: false
-    },
-    {
-      id: 2,
-      customer_name: "Alex",
-      checkin_date: "May 08, 2021 - 10:00:00",
-      checkout_date: "May 14, 2021 - 15:00:00",
-      room_number: 309,
-      open_desc: false
-    },
-    {
-      id: 3,
-      customer_name: "Adam",
-      checkin_date: "June 02, 2021 - 18:00:00",
-      checkout_date: "April 20, 2021 - 08:00:00",
-      room_number: 409,
-      open_desc: false
-    },
-    {
-      id: 4,
-      customer_name: "Arum",
-      checkin_date: "December 13, 2021 - 05:00:00",
-      checkout_date: "December 23, 2021 - 20:00:00",
-      room_number: 807,
-      open_desc: false
-    },
-    {
-      id: 5,
-      customer_name: "Ayu",
-      checkin_date: "September 29, 2021 - 15:00:00",
-      checkout_date: "October 5, 2021 - 08:00:00",
-      room_number: 203,
-      open_desc: false
-    }
+  
   ])
 
   const [toggleAdd, setToggleAdd] = useState(false)
+
+  //Effects
+  useEffect(() => {
+    const get_reservations = async () => {
+      const fetched_reservations = await fetch_reserv()
+      setReservations(fetched_reservations)
+    }
+
+    get_reservations()
+  }, [])
+
+  //Fetching resrevations data from the server
+  const fetch_reserv = async () => {
+    const res = await fetch("http://localhost:5000/reservations")
+    const data = await res.json()
+
+    return data
+  }
 
   //Delete Reservation
   const delete_reserv = (id) => {
