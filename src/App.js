@@ -49,6 +49,8 @@ function App() {
     }
   ])
 
+  const [toggleAdd, setToggleAdd] = useState(false)
+
   //Delete Reservation
   const delete_reserv = (id) => {
     setReservations(reservations.filter((reservation) => (
@@ -63,8 +65,6 @@ function App() {
 
   //Toggle reservation card
   const toggle_reserv_card = (id) => {
-    console.log(id)
-
     setReservations(reservations.map((reservation) => (reservation.id === id ? 
       {...reservation, open_desc:!reservation.open_desc} : 
       reservation
@@ -72,11 +72,19 @@ function App() {
     ))
   }
 
+  //Toggle add form
+  const toggle_add_form = () => {
+    setToggleAdd(!toggleAdd)
+  }
+
 
   return (
     <div className="App container">
-      <Header />
-      <AddReservation onSubmit = {submit_reserv}/>
+      <Header onFormToggle = {toggle_add_form} showAddForm = {toggleAdd}/>
+      {toggleAdd &&
+      <AddReservation onSubmit = {submit_reserv} />  
+      }
+
       {reservations.length > 0 ? 
         <RoomReservations room_reservations = {reservations} onDelete = {delete_reserv} onToggle = {toggle_reserv_card}/> : 
         <EmptyBanner/>
