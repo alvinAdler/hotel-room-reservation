@@ -3,6 +3,7 @@ import AddReservation from './components/AddReservation'
 
 import Header from './components/Header'
 import RoomReservations from './components/RoomReservations'
+import EmptyBanner from './components/EmptyBanner'
 
 function App() {
   const [reservations, setReservations] = useState([
@@ -76,7 +77,10 @@ function App() {
     <div className="App container">
       <Header />
       <AddReservation onSubmit = {submit_reserv}/>
-      <RoomReservations room_reservations = {reservations} onDelete = {delete_reserv} onToggle = {toggle_reserv_card}/>
+      {reservations.length > 0 ? 
+        <RoomReservations room_reservations = {reservations} onDelete = {delete_reserv} onToggle = {toggle_reserv_card}/> : 
+        <EmptyBanner/>
+      }
     </div>
   );
 }
