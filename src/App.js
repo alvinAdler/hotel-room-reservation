@@ -4,6 +4,7 @@ import AddReservation from './components/AddReservation'
 import Header from './components/Header'
 import RoomReservations from './components/RoomReservations'
 import EmptyBanner from './components/EmptyBanner'
+import Navbar from './components/Navbar'
 
 function App() {
   //States
@@ -86,16 +87,19 @@ function App() {
 
 
   return (
-    <div className="App container">
-      <Header onFormToggle = {toggle_add_form} showAddForm = {toggleAdd}/>
-      {toggleAdd &&
-      <AddReservation onSubmit = {submit_reserv} />  
-      }
+    <div className="App">
+      <Navbar/>
+      <div className="container" style={{marginTop: "15px"}}>
+        <Header onFormToggle = {toggle_add_form} showAddForm = {toggleAdd}/>
+        {toggleAdd &&
+        <AddReservation onSubmit = {submit_reserv} />  
+        }
 
-      {reservations.length > 0 ? 
-        <RoomReservations room_reservations = {reservations} onDelete = {delete_reserv} onToggle = {toggle_reserv_card}/> : 
-        <EmptyBanner/>
-      }
+        {reservations.length > 0 ? 
+          <RoomReservations room_reservations = {reservations} onDelete = {delete_reserv} onToggle = {toggle_reserv_card}/> : 
+          <EmptyBanner/>
+        }
+      </div>
     </div>
   );
 }
