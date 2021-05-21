@@ -1,10 +1,12 @@
 import {useState, useEffect} from 'react'
-import AddReservation from './components/AddReservation'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
+import AddReservation from './components/AddReservation'
 import Header from './components/Header'
 import RoomReservations from './components/RoomReservations'
 import EmptyBanner from './components/EmptyBanner'
 import Navbar from './components/Navbar'
+import AboutPage from './components/AboutPage'
 
 function App() {
   //States
@@ -87,20 +89,27 @@ function App() {
 
 
   return (
-    <div className="App">
-      <Navbar/>
-      <div className="container" style={{marginTop: "15px"}}>
-        <Header onFormToggle = {toggle_add_form} showAddForm = {toggleAdd}/>
-        {toggleAdd &&
-        <AddReservation onSubmit = {submit_reserv} />  
-        }
+    <Router>
+      <div className="App">
+        <Navbar/>
+        <Route path="/about" component={AboutPage}/>
+        <Route path="/" exact render={(props) => (
+          <>
+            <div className="container" style={{marginTop: "15px"}}>
+              <Header onFormToggle = {toggle_add_form} showAddForm = {toggleAdd}/>
+              {toggleAdd &&
+              <AddReservation onSubmit = {submit_reserv} />  
+              }
 
-        {reservations.length > 0 ? 
-          <RoomReservations room_reservations = {reservations} onDelete = {delete_reserv} onToggle = {toggle_reserv_card}/> : 
-          <EmptyBanner/>
-        }
+              {reservations.length > 0 ? 
+                <RoomReservations room_reservations = {reservations} onDelete = {delete_reserv} onToggle = {toggle_reserv_card}/> : 
+                <EmptyBanner/>
+              }
+            </div>
+          </>
+        )}/>
       </div>
-    </div>
+    </Router>
   );
 }
 

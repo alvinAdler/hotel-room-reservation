@@ -1,12 +1,12 @@
 const NavbarLinks = [
     {
         linkName: "Home",
-        linkDest: "#",
+        linkDest: "/",
         linkClass: "nav-link"
     },
     {
         linkName: "About",
-        linkDest: "#",
+        linkDest: "/about",
         linkClass: "nav-link"
     },
     {

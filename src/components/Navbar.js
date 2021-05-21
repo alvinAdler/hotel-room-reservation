@@ -1,4 +1,5 @@
 import {React, useState} from 'react'
+import {Link} from 'react-router-dom'
 import NavbarLinks from './raw-data/NavbarLinks'
 
 const Navbar = () => {
@@ -14,7 +15,7 @@ const Navbar = () => {
             <div className={toggleNav ? "navbar-contents navbar-active" : "navbar-contents"}>
                 {NavbarLinks.map((link, index) => {
                     return(
-                        <a key={index} href={link.linkDest} className={link.linkClass}>{link.linkName}</a>
+                        <Link key={index} to={link.linkDest} className={link.linkClass}>{link.linkName}</Link>
                     )
                 })}
             </div>
