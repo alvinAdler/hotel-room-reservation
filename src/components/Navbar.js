@@ -1,15 +1,24 @@
-import React from 'react'
+import {React, useState} from 'react'
+import NavbarLinks from './raw-data/NavbarLinks'
 
 const Navbar = () => {
+    const [toggleNav, setToggleNav] = useState(false)
+
+    const toggleNavView = () => {
+        setToggleNav(!toggleNav)
+    }
+
     return (
-        <nav className="navbar navbar-expand-lg">
+        <nav className="navbar-menu">
             <a className="navbar-brand">Hotel</a>
-            <div className="collapse navbar-collapse" id="sample_nav_container">
-                <div className="navbar-nav">
-                    <a href="#" className="nav-link">Home</a>
-                    <a href="#" className="nav-link">About</a>
-                </div>
+            <div className={toggleNav ? "navbar-contents navbar-active" : "navbar-contents"}>
+                {NavbarLinks.map((link, index) => {
+                    return(
+                        <a key={index} href={link.linkDest} className={link.linkClass}>{link.linkName}</a>
+                    )
+                })}
             </div>
+            <button className={toggleNav ? "btn btn-close" : "btn btn-open"} onClick={() => toggleNavView()}>{toggleNav ? "Close" : "Show"}</button>
         </nav>
     )
 }
